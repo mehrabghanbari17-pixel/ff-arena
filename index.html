@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FF Arena | مسابقات Free Fire</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#0b0d13;color:#fff}
+header{padding:22px 18px;background:linear-gradient(135deg,#151a29,#0b0d13);border-bottom:1px solid #252b3a;position:sticky;top:0;z-index:5}
+.nav{max-width:900px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:24px;font-weight:900;color:#ffb000}.logo span{color:#fff}
+.btn{border:0;border-radius:12px;padding:11px 16px;background:#ffb000;color:#111;font-weight:800;cursor:pointer}
+.container{max-width:900px;margin:auto;padding:25px 16px}
+.hero{padding:30px 20px;border-radius:22px;background:linear-gradient(135deg,#1d2233,#111521);border:1px solid #2a3041;margin-bottom:22px}
+.hero h1{font-size:34px;margin:0 0 10px}.hero p{color:#aeb5c7;line-height:1.9;margin:0 0 18px}
+.badge{display:inline-block;padding:7px 11px;border-radius:999px;background:#24304b;color:#8fb3ff;font-size:12px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:#151925;border:1px solid #272d3d;border-radius:18px;padding:18px}
+.card h3{margin:0 0 12px}.muted{color:#9da5b7;font-size:13px}.prize{font-size:25px;font-weight:900;color:#ffb000;margin:12px 0}
+.info{display:flex;justify-content:space-between;gap:8px;color:#c8cedb;font-size:13px;margin:9px 0}
+.full{width:100%;margin-top:12px}
+section{margin-top:28px}section h2{font-size:21px}
+footer{text-align:center;color:#777f91;padding:35px 15px;font-size:12px}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:20;align-items:center;justify-content:center;padding:16px}
+.modal-box{width:min(500px,100%);background:#151925;border:1px solid #30374a;border-radius:20px;padding:20px}
+input{width:100%;padding:13px;margin:7px 0;background:#0d1018;color:#fff;border:1px solid #30374a;border-radius:10px}
+.close{background:#2a3040;color:#fff;margin-left:8px}
+.note{font-size:12px;color:#929bad;line-height:1.8;margin-top:10px}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="logo">FF <span>ARENA</span></div><button class="btn" onclick="openModal()">ثبت‌نام</button></div></header>
+
+<main class="container">
+<div class="hero">
+<span class="badge">FREE FIRE CUSTOM</span>
+<h1>به FF Arena خوش اومدی 🎮</h1>
+<p>مسابقات کاستوم فری‌فایر را ببین، در مسابقه موردنظرت ثبت‌نام کن و نتایج را دنبال کن.</p>
+<button class="btn" onclick="document.getElementById('matches').scrollIntoView({behavior:'smooth'})">مشاهده مسابقات</button>
+</div>
+
+<section id="matches">
+<h2>🔥 مسابقات فعال</h2>
+<div class="grid">
+<div class="card">
+<h3>کاستوم شماره ۱</h3><div class="muted">Classic • Solo</div>
+<div class="prize">🎁 جایزه: 100 جم</div>
+<div class="info"><span>⏰ امروز 20:00</span><span>👥 48 نفر</span></div>
+<button class="btn full" onclick="openModal('کاستوم شماره ۱')">ثبت‌نام</button>
+</div>
+<div class="card">
+<h3>کاستوم شماره ۲</h3><div class="muted">Classic • Squad</div>
+<div class="prize">🎁 جایزه: 500 جم</div>
+<div class="info"><span>⏰ فردا 18:00</span><span>👥 12 تیم</span></div>
+<button class="btn full" onclick="openModal('کاستوم شماره ۲')">ثبت‌نام</button>
+</div>
+</div>
+</section>
+
+<section>
+<h2>🏆 آخرین نتایج</h2>
+<div class="card">
+<div class="info"><b>🥇 بازیکن نمونه</b><span>کاستوم شماره ۱</span><strong>100 امتیاز</strong></div>
+<div class="info"><b>🥈 بازیکن نمونه ۲</b><span>کاستوم شماره ۱</span><strong>85 امتیاز</strong></div>
+</div>
+</section>
+
+<section>
+<h2>📜 قوانین</h2>
+<div class="card">
+<div class="muted">قوانین هر مسابقه باید قبل از ثبت‌نام مطالعه شود. ظرفیت مسابقه محدود است و نتیجه نهایی بر اساس قوانین اعلام‌شده توسط برگزارکننده ثبت می‌شود.</div>
+</div>
+</section>
+</main>
+
+<footer>FF Arena — نسخه آزمایشی</footer>
+
+<div class="modal" id="modal">
+<div class="modal-box">
+<h2 id="modalTitle">ثبت‌نام مسابقه</h2>
+<input id="name" placeholder="نام بازیکن">
+<input id="uid" placeholder="آیدی Free Fire">
+<input id="phone" placeholder="راه ارتباطی (اختیاری)">
+<button class="btn" onclick="submitForm()">ثبت‌نام</button>
+<button class="btn close" onclick="closeModal()">بستن</button>
+<p class="note">این نسخه آزمایشی است؛ اطلاعات هنوز به سرور متصل نشده و برای استفاده واقعی باید بخش مدیریت و پایگاه داده اضافه شود.</p>
+</div>
+</div>
+
+<script>
+let selected='';
+function openModal(name=''){selected=name;document.getElementById('modalTitle').textContent='ثبت‌نام '+(name||'مسابقه');document.getElementById('modal').style.display='flex'}
+function closeModal(){document.getElementById('modal').style.display='none'}
+function submitForm(){
+ const n=document.getElementById('name').value.trim(),u=document.getElementById('uid').value.trim();
+ if(!n||!u){alert('لطفاً نام و آیدی Free Fire را وارد کن.');return}
+ alert('ثبت‌نام آزمایشی انجام شد ✅\nمسابقه: '+selected+'\nنام: '+n);
+ closeModal();
+}
+</script>
+</body>
+</html>
