@@ -997,62 +997,105 @@ alert(
 
 }
 
+  function showPlayers(id){
 
-function showPlayers(id){
+  let match = matches.find(x => x.id === id);
 
-let match=
-matches.find(x=>x.id===id);
+  if(!match) return;
 
-if(!match)return;
+  let box = document.getElementById("organizerList");
 
+  if(!match.players || !match.players.length){
 
-if(!match.players.length){
+    box.innerHTML = `
+      <div class="card">
+        <h3>👥 بازیکنان ${escapeHTML(match.title)}</h3>
+        <div class="empty">
+          هنوز بازیکنی ثبت‌نام نکرده.
+        </div>
+        <button class="btn dark full"
+          onclick="renderOrganizer()">
+          برگشت
+        </button>
+      </div>
+    `;
 
-alert(
-"هنوز بازیکنی ثبت‌نام نکرده."
-);
+    return;
+  }
 
-return;
+  box.innerHTML = `
+    <div class="card">
+
+      <div class="head">
+        <h3>👥 بازیکنان مسابقه</h3>
+
+        <span class="gold">
+          ${match.players.length}/${match.capacity}
+        </span>
+      </div>
+
+      <p class="muted">
+        ${escapeHTML(match.title)}
+      </p>
+
+      ${match.players.map((p,i)=>`
+
+        <div class="card" style="margin-top:10px">
+
+          <b>
+            ${i+1}. ${escapeHTML(p.name)}
+          </b>
+
+          <div class="muted" style="margin-top:7px">
+            🆔 آیدی: ${escapeHTML(p.playerId)}
+          </div>
+
+          <div class="muted" style="margin-top:7px">
+            🕐 ${escapeHTML(p.date)}
+          </div>
+
+          <button
+            class="btn dark full"
+            style="margin-top:10px"
+            onclick="removePlayer(${match.id},${i})">
+
+            🗑️ حذف بازیکن
+
+          </button>
+
+        </div>
+
+      `).join("")}
+
+      <button
+        class="btn full"
+        style="margin-top:15px"
+        onclick="renderOrganizer()">
+
+        برگشت به پنل برگزارکننده
+
+      </button>
+
+    </div>
+  `;
 
 }
 
 
-let text=
-match.players.map(
-(p,i)=>
-`${i+1}. ${p.name} — ${p.playerId}`
-).join("\n");
+function removePlayer(matchId, playerIndex){
 
+  let match = matches.find(x => x.id === matchId);
 
-alert(text);
+  if(!match) return;
 
-}
+  if(!confirm("آیا از حذف این بازیکن مطمئنی؟")) return;
 
+  match.players.splice(playerIndex,1);
 
-document
-.querySelectorAll(".modal")
-.forEach(modal=>{
+  save();
 
-modal.addEventListener(
-"click",
-function(e){
+  showPlayers(matchId);
 
-if(e.target===modal){
+  alert("بازیکن حذف شد ✅");
 
-modal.classList.remove(
-"show"
-);
-
-}
-
-});
-
-});
-
-
-render();
-
-</script>
-
-</body>
-</html>
+  }
