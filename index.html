@@ -3,204 +3,262 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FF Arena | مسابقات کاستوم فری فایر</title>
+<title>FF Arena</title>
 
 <style>
 *{box-sizing:border-box}
+
 body{
- margin:0;
- font-family:Tahoma,Arial,sans-serif;
- background:#07090f;
- color:#eee;
+  margin:0;
+  background:#07090f;
+  color:#eee;
+  font-family:Tahoma,Arial,sans-serif
 }
-:root{
- --gold:#f5a900;
- --gold2:#ffca28;
- --card:#111622;
- --card2:#171d2a;
- --muted:#9ca3b5;
- --green:#25c46b;
-}
+
 header{
- position:sticky;
- top:0;
- z-index:10;
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:15px 5%;
- background:#090b10ee;
- backdrop-filter:blur(10px);
- border-bottom:1px solid #202635;
+  padding:18px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #222;
+  background:#080a10
 }
+
 .logo{
- font-size:27px;
- font-weight:900;
- color:#fff;
+  font-size:28px;
+  font-weight:900
 }
-.logo span{color:var(--gold)}
-button{
- border:0;
- border-radius:13px;
- padding:13px 20px;
- font-size:15px;
- font-weight:bold;
- cursor:pointer;
+
+.logo b,.gold{
+  color:#f5a900
 }
-.gold{background:var(--gold);color:#111}
-.dark{background:#1a2130;color:#ddd}
+
+.btn{
+  border:0;
+  border-radius:15px;
+  padding:13px 18px;
+  background:#f5a900;
+  color:#111;
+  font-weight:bold;
+  cursor:pointer
+}
+
+.btn.dark{
+  background:#171d2a;
+  color:#ddd
+}
+
+.wrap{
+  max-width:1000px;
+  margin:auto;
+  padding:25px 16px
+}
+
+.hero,.card{
+  background:#111622;
+  border:1px solid #252d3d;
+  border-radius:26px
+}
+
 .hero{
- margin:35px auto;
- width:92%;
- max-width:1050px;
- padding:45px 25px;
- text-align:center;
- border:1px solid #242b3b;
- border-radius:28px;
- background:
- radial-gradient(circle at 20% 20%,#f5a90018,transparent 35%),
- radial-gradient(circle at 80% 80%,#3156ff18,transparent 35%),
- var(--card);
+  padding:35px 22px;
+  text-align:center
 }
+
 .badge{
- display:inline-block;
- background:#18305f;
- color:#8db2ff;
- padding:9px 17px;
- border-radius:30px;
- margin-bottom:15px;
+  display:inline-block;
+  background:#102e67;
+  color:#9ebcff;
+  padding:10px 18px;
+  border-radius:30px
 }
-h1{font-size:clamp(30px,7vw,55px);margin:12px 0}
+
+.hero h1{
+  font-size:clamp(30px,7vw,54px)
+}
+
 .hero p{
- color:#adb4c4;
- font-size:17px;
- line-height:2;
- max-width:700px;
- margin:20px auto;
+  color:#aeb4c4;
+  line-height:2
 }
+
+.actions{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap
+}
+
 .stats{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:12px;
- max-width:800px;
- margin:30px auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:22px
 }
-.stat,.card{
- background:var(--card);
- border:1px solid #242b3b;
- border-radius:20px;
- padding:22px;
+
+.stat{
+  padding:20px;
+  border:1px solid #252d3d;
+  border-radius:20px
 }
-.stat b{
- display:block;
- color:var(--gold);
- font-size:30px;
- margin-bottom:7px;
+
+.stat strong{
+  display:block;
+  color:#f5a900;
+  font-size:32px;
+  margin-bottom:6px
 }
-.container{width:92%;max-width:1050px;margin:auto}
-.section-title{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin:35px 0 15px;
+
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  margin:18px 0
 }
-.filters{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
- margin-bottom:15px;
+
+.tab{
+  border:0;
+  border-radius:12px;
+  padding:11px 17px;
+  background:#151b29;
+  color:#ddd
 }
-.filter.active{background:var(--gold);color:#111}
+
+.tab.active{
+  background:#f5a900;
+  color:#111
+}
+
 .grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
- gap:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:14px
 }
-.card h3{margin-top:0}
-.muted{color:var(--muted)}
-.prize{
- font-size:27px;
- color:var(--gold);
- font-weight:bold;
- margin:18px 0;
+
+.card{
+  padding:20px
 }
-.info{
- display:flex;
- justify-content:space-between;
- color:#b6bdca;
- margin:12px 0;
+
+.muted{
+  color:#9ca3b5
 }
-.room{
- background:#0b101a;
- padding:13px;
- border-radius:12px;
- color:#cbd5e1;
- margin:15px 0;
+
+.reward{
+  font-size:25px;
+  color:#f5a900;
+  font-weight:bold;
+  margin:14px 0
 }
-.room b{color:var(--gold)}
-footer{
- text-align:center;
- color:#667085;
- padding:45px 15px;
+
+.meta{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  margin:15px 0
 }
+
+.lock{
+  padding:12px;
+  border-radius:13px;
+  background:#151d2c;
+  margin:12px 0
+}
+
+.full{
+  width:100%
+}
+
 .modal{
- display:none;
- position:fixed;
- inset:0;
- z-index:100;
- background:#000b;
- align-items:center;
- justify-content:center;
- padding:15px;
+  position:fixed;
+  inset:0;
+  background:#000b;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  z-index:20
 }
-.modal.show{display:flex}
-.modal-box{
- width:100%;
- max-width:520px;
- background:#111622;
- border:1px solid #30394d;
- border-radius:22px;
- padding:25px;
- max-height:90vh;
- overflow:auto;
+
+.modal.show{
+  display:flex
 }
-input,select{
- width:100%;
- padding:14px;
- margin:7px 0 13px;
- border-radius:11px;
- border:1px solid #30394d;
- background:#080c14;
- color:#fff;
- font-size:15px;
+
+.box{
+  width:min(560px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:#111622;
+  border:1px solid #2a3345;
+  border-radius:24px;
+  padding:20px
 }
-label{color:#cbd5e1}
-.form-row{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
+
+.head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center
 }
+
 .close{
- float:left;
- background:#202838;
- color:#fff;
+  background:#202838;
+  color:#fff;
+  border:0;
+  border-radius:10px;
+  padding:10px 14px
 }
-.message{
- padding:13px;
- border-radius:11px;
- background:#10251a;
- color:#69e09a;
- display:none;
- margin:10px 0;
+
+.form{
+  display:grid;
+  gap:12px
 }
-.admin{
- border:1px solid #8b6200;
- background:linear-gradient(145deg,#17140b,#111622);
+
+label{
+  font-size:14px;
+  color:#ccd2df
 }
-@media(max-width:600px){
- .stats{grid-template-columns:1fr}
- .form-row{grid-template-columns:1fr}
- header{padding:13px 4%}
+
+input,select,textarea{
+  width:100%;
+  margin-top:6px;
+  background:#0b101a;
+  color:#eee;
+  border:1px solid #30394c;
+  border-radius:13px;
+  padding:13px
+}
+
+textarea{
+  min-height:80px
+}
+
+.notice{
+  background:#10203a;
+  color:#c4d3f3;
+  padding:12px;
+  border-radius:13px;
+  line-height:1.8
+}
+
+.empty{
+  text-align:center;
+  padding:35px;
+  color:#8991a4
+}
+
+footer{
+  text-align:center;
+  color:#697184;
+  padding:35px
+}
+
+@media(max-width:650px){
+  .stats{
+    grid-template-columns:1fr
+  }
+
+  .logo{
+    font-size:23px
+  }
 }
 </style>
 </head>
@@ -208,217 +266,793 @@ label{color:#cbd5e1}
 <body>
 
 <header>
- <div class="logo"><span>FF</span> ARENA</div>
- <button class="gold" onclick="openAdmin()">پنل برگزارکننده</button>
+  <div class="logo">
+    <b>FF</b> ARENA
+  </div>
+
+  <button class="btn" onclick="openM('organizer')">
+    پنل برگزارکننده
+  </button>
 </header>
 
+<main class="wrap">
+
 <section class="hero">
- <div class="badge">FREE FIRE CUSTOM PLATFORM</div>
- <h1>کاستومت رو بساز، رقابت کن 🎮</h1>
- <p>
-  پلتفرم مدیریت مسابقات کاستوم فری فایر.
-  مسابقه بساز، بازیکن ثبت‌نام کن و کد روم را منتشر کن.
- </p>
 
- <button class="gold" onclick="openCreate()">+ ساخت کاستوم</button>
- <button class="dark" onclick="scrollToMatches()">مشاهده کاستوم‌ها</button>
+<span class="badge">
+FREE FIRE CUSTOM PLATFORM
+</span>
 
- <div class="stats">
-  <div class="stat"><b id="matchCount">0</b>مسابقه فعال</div>
-  <div class="stat"><b id="playerCount">0</b>بازیکن ثبت‌شده</div>
-  <div class="stat"><b>🏆</b>مسابقات رقابتی</div>
- </div>
+<h1>
+کاستوم رو بساز، رقابت کن 🎮
+</h1>
+
+<p>
+مسابقه کاستوم بساز، بازیکن ثبت‌نام کن و کد روم را منتشر کن.
+</p>
+
+<div class="actions">
+
+<button class="btn" onclick="openM('create')">
++ ساخت کاستوم
+</button>
+
+<button class="btn dark"
+onclick="document.getElementById('matches').scrollIntoView({behavior:'smooth'})">
+مشاهده کاستوم‌ها
+</button>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="count">0</strong>
+مسابقه فعال
+</div>
+
+<div class="stat">
+<strong id="players">0</strong>
+بازیکن ثبت‌شده
+</div>
+
+<div class="stat">
+<strong>🏆</strong>
+مسابقات رقابتی
+</div>
+
+</div>
+
 </section>
 
-<main class="container" id="matches">
+<section id="matches">
 
- <div class="section-title">
-  <h2>🎮 مسابقات کاستوم</h2>
- </div>
+<div class="tabs">
 
- <div class="filters">
-  <button class="dark filter active" onclick="filterMatches('all',this)">همه</button>
-  <button class="dark filter" onclick="filterMatches('Solo',this)">Solo</button>
-  <button class="dark filter" onclick="filterMatches('Squad',this)">Squad</button>
- </div>
+<button class="tab active"
+onclick="filter='all';render()">
+همه
+</button>
 
- <div id="matchGrid" class="grid"></div>
+<button class="tab"
+onclick="filter='squad';render()">
+Squad
+</button>
 
- <div class="section-title">
-  <h2>🏆 آخرین نتایج</h2>
- </div>
+<button class="tab"
+onclick="filter='duo';render()">
+Duo
+</button>
 
- <div class="card">
-  <div class="info"><span>🥇 بازیکن نمونه</span><b>100 امتیاز</b></div>
-  <div class="info"><span>🥈 بازیکن نمونه ۲</span><b>85 امتیاز</b></div>
-  <div class="info"><span>🥉 بازیکن نمونه ۳</span><b>70 امتیاز</b></div>
- </div>
+<button class="tab"
+onclick="filter='solo';render()">
+Solo
+</button>
 
- <div class="section-title">
-  <h2>📜 قوانین کلی</h2>
- </div>
+</div>
 
- <div class="card muted">
-  ورود به هر مسابقه تابع قوانین همان مسابقه است.
-  کد روم فقط توسط برگزارکننده منتشر می‌شود.
-  اطلاعات ثبت‌نام روی همین مرورگر ذخیره می‌شود.
- </div>
+<div id="grid" class="grid"></div>
+
+</section>
+
+<section class="card" style="margin-top:18px">
+
+<h2>📜 قوانین کلی</h2>
+
+<p class="muted">
+ورود به هر مسابقه تابع قوانین همان مسابقه است.
+کد روم توسط برگزارکننده وارد می‌شود.
+</p>
+
+</section>
 
 </main>
 
 <footer>
- FF Arena — نسخه آزمایشی 1.0
-</footer>
+FF Arena — نسخه آزمایشی
+</footer><!-- پنجره ساخت کاستوم -->
+<div class="modal" id="create">
 
+<div class="box">
 
-<!-- ساخت مسابقه -->
-<div class="modal" id="createModal">
- <div class="modal-box">
-  <button class="close" onclick="closeModal('createModal')">بستن</button>
-  <h2>🎮 ساخت کاستوم</h2>
+<div class="head">
+<h2>🎮 ساخت کاستوم</h2>
 
-  <label>نام مسابقه</label>
-  <input id="mName" placeholder="مثلاً FF Arena Squad">
+<button class="close"
+onclick="closeM('create')">
+×
+</button>
+</div>
 
-  <div class="form-row">
-   <div>
-    <label>نوع</label>
-    <select id="mType">
-     <option>Squad</option>
-     <option>Solo</option>
-    </select>
-   </div>
+<div class="notice">
+اطلاعات مسابقه را وارد کن و کاستوم جدید بساز.
+</div>
 
-   <div>
-    <label>ظرفیت</label>
-    <input id="mCapacity" type="number" value="48">
-   </div>
-  </div>
+<form class="form"
+onsubmit="createMatch(event)">
 
-  <label>جایزه</label>
-  <input id="mPrize" placeholder="مثلاً 500 جم">
+<label>
+نام مسابقه
+<input id="title"
+required
+placeholder="مثلاً FF Arena Night">
+</label>
 
-  <label>زمان مسابقه</label>
-  <input id="mTime" placeholder="مثلاً امشب ساعت 22:00">
+<label>
+نوع بازی
 
-  <button class="gold" style="width:100%" onclick="createMatch()">
-   ساخت مسابقه
-  </button>
- </div>
+<select id="mode">
+<option value="squad">Squad</option>
+<option value="duo">Duo</option>
+<option value="solo">Solo</option>
+</select>
+
+</label>
+
+<label>
+مپ
+<input id="map"
+required
+placeholder="مثلاً Bermuda">
+</label>
+
+<label>
+ظرفیت بازیکن
+<input id="capacity"
+type="number"
+min="1"
+max="100"
+value="50"
+required>
+</label>
+
+<label>
+جایزه
+<input id="reward"
+required
+placeholder="مثلاً 500 جم">
+</label>
+
+<label>
+زمان شروع
+<input id="time"
+required
+type="datetime-local">
+</label>
+
+<label>
+کد روم
+<input id="room"
+placeholder="مثلاً 123456">
+</label>
+
+<label>
+نام برگزارکننده
+<input id="host"
+required
+placeholder="نام شما">
+</label>
+
+<label>
+قوانین مسابقه
+<textarea
+id="rules"
+placeholder="قوانین مسابقه...">
+</textarea>
+</label>
+
+<button class="btn full"
+type="submit">
+ساخت مسابقه
+</button>
+
+</form>
+
+</div>
 </div>
 
 
-<!-- ثبت نام -->
-<div class="modal" id="registerModal">
- <div class="modal-box">
-  <button class="close" onclick="closeModal('registerModal')">بستن</button>
-  <h2>📝 ثبت‌نام در کاستوم</h2>
+<!-- پنجره ثبت نام -->
+<div class="modal" id="register">
 
-  <div id="selectedMatch" class="room"></div>
+<div class="box">
 
-  <label>نام بازیکن</label>
-  <input id="playerName" placeholder="نام داخل فری فایر">
+<div class="head">
 
-  <label>آیدی فری فایر</label>
-  <input id="playerId" placeholder="مثلاً 123456789">
+<h2>📝 ثبت‌نام بازیکن</h2>
 
-  <div id="registerMsg" class="message"></div>
+<button class="close"
+onclick="closeM('register')">
+×
+</button>
 
-  <button class="gold" style="width:100%" onclick="registerPlayer()">
-   ثبت‌نام
-  </button>
- </div>
+</div>
+
+<div id="registerInfo"
+class="notice">
+</div>
+
+<form class="form"
+onsubmit="registerPlayer(event)">
+
+<input
+type="hidden"
+id="registerMatch">
+
+<label>
+نام بازیکن
+<input
+id="playerName"
+required
+placeholder="نام داخل فری فایر">
+</label>
+
+<label>
+آیدی فری فایر
+<input
+id="playerId"
+required
+placeholder="مثلاً 123456789">
+</label>
+
+<button
+class="btn full"
+type="submit">
+ثبت‌نام
+</button>
+
+</form>
+
+</div>
 </div>
 
 
 <!-- پنل برگزارکننده -->
-<div class="modal" id="adminModal">
- <div class="modal-box admin">
-  <button class="close" onclick="closeModal('adminModal')">بستن</button>
-  <h2>🔐 پنل برگزارکننده</h2>
+<div class="modal" id="organizer">
 
-  <p class="muted">
-   از این قسمت می‌توانی کد روم مسابقه را منتشر کنی.
-  </p>
+<div class="box">
 
-  <label>انتخاب مسابقه</label>
-  <select id="adminMatch"></select>
+<div class="head">
 
-  <label>کد روم</label>
-  <input id="roomCode" placeholder="مثلاً 123456">
+<h2>🔐 پنل برگزارکننده</h2>
 
-  <button class="gold" style="width:100%" onclick="publishRoom()">
-   انتشار کد روم
-  </button>
+<button class="close"
+onclick="closeM('organizer')">
+×
+</button>
 
-  <hr style="border-color:#252d3d;margin:25px 0">
+</div>
 
-  <h3>👥 بازیکنان ثبت‌نام‌شده</h3>
-  <div id="adminPlayers" class="muted">مسابقه‌ای انتخاب نشده</div>
- </div>
+<div id="organizerList">
+</div>
+
+</div>
 </div>
 
 
 <script>
 
-let matches = JSON.parse(localStorage.getItem("ff_matches") || "[]");
-let players = JSON.parse(localStorage.getItem("ff_players") || "[]");
-let selectedId = null;
+let filter="all";
+
+let matches=
+JSON.parse(
+localStorage.getItem("ff_arena_matches") || "[]"
+);
+
 
 function save(){
- localStorage.setItem("ff_matches",JSON.stringify(matches));
- localStorage.setItem("ff_players",JSON.stringify(players));
+
+localStorage.setItem(
+"ff_arena_matches",
+JSON.stringify(matches)
+);
+
+render();
+
 }
 
-function openCreate(){
- document.getElementById("createModal").classList.add("show");
+
+function openM(id){
+
+document
+.getElementById(id)
+.classList.add("show");
+
 }
 
-function openAdmin(){
- renderAdmin();
- document.getElementById("adminModal").classList.add("show");
+
+function closeM(id){
+
+document
+.getElementById(id)
+.classList.remove("show");
+
 }
 
-function closeModal(id){
- document.getElementById(id).classList.remove("show");
+
+function escapeHTML(text){
+
+return String(text || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
 }
 
-function createMatch(){
 
- let name=document.getElementById("mName").value.trim();
+function createMatch(e){
 
- if(!name){
-  alert("نام مسابقه را وارد کن");
-  return;
- }
+e.preventDefault();
 
- let match={
-  id:Date.now(),
-  name:name,
-  type:document.getElementById("mType").value,
-  capacity:Number(document.getElementById("mCapacity").value)||48,
-  prize:document.getElementById("mPrize").value||"بدون جایزه",
-  time:document.getElementById("mTime").value||"زمان اعلام نشده",
-  room:"",
-  created:new Date().toLocaleString("fa-IR")
- };
+let match={
 
- matches.unshift(match);
- save();
+id:Date.now(),
 
- document.getElementById("mName").value="";
- document.getElementById("mPrize").value="";
- document.getElementById("mTime").value="";
+title:
+document.getElementById("title").value.trim(),
 
- closeModal("createModal");
- renderMatches();
+mode:
+document.getElementById("mode").value,
 
- alert("مسابقه با موفقیت ساخته شد 🎉");
+map:
+document.getElementById("map").value.trim(),
+
+capacity:
+Number(
+document.getElementById("capacity").value
+),
+
+reward:
+document.getElementById("reward").value.trim(),
+
+time:
+document.getElementById("time").value,
+
+room:
+document.getElementById("room").value.trim(),
+
+host:
+document.getElementById("host").value.trim(),
+
+rules:
+document.getElementById("rules").value.trim(),
+
+players:[]
+
+};
+
+matches.unshift(match);
+
+save();
+
+document
+.querySelector("#create form")
+.reset();
+
+closeM("create");
+
+alert("کاستوم با موفقیت ساخته شد 🎉");
+
 }
 
-function renderMatches(type="all"){
 
- let grid=document.getElementById("matchGrid");
+function render(){
 
- let list=type==="all"
-  ?
+let grid=
+document.getElementById("grid");
+
+let list=
+filter==="all"
+?matches
+:matches.filter(
+x=>x.mode===filter
+);
+
+
+document.getElementById("count")
+.textContent=matches.length;
+
+
+document.getElementById("players")
+.textContent=
+matches.reduce(
+(sum,x)=>sum+(x.players?.length||0),
+0
+);
+
+
+if(!list.length){
+
+grid.innerHTML=`
+
+<div class="card empty">
+
+هنوز کاستومی ساخته نشده.
+
+<br><br>
+
+<button
+class="btn"
+onclick="openM('create')">
+
+ساخت اولین کاستوم
+
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+grid.innerHTML=list.map(m=>{
+
+let playerCount=
+m.players?.length || 0;
+
+return `
+
+<div class="card">
+
+<h3>
+${escapeHTML(m.title)}
+</h3>
+
+<div class="muted">
+
+${escapeHTML(m.mode)}
+•
+${escapeHTML(m.map)}
+
+</div>
+
+<div class="reward">
+
+${escapeHTML(m.reward)} 🎁
+
+</div>
+
+<div class="meta">
+
+<span>
+👥 ${playerCount}/${m.capacity}
+</span>
+
+<span>
+⏰ ${escapeHTML(m.time)}
+</span>
+
+</div>
+
+<div class="muted">
+
+👤 برگزارکننده:
+${escapeHTML(m.host)}
+
+</div>
+
+<div class="lock">
+
+🔐 کد روم:
+
+<b>
+
+${m.room
+?escapeHTML(m.room)
+:"هنوز اعلام نشده"}
+
+</b>
+
+</div>
+
+<button
+class="btn full"
+onclick="openRegister(${m.id})">
+
+ثبت‌نام در این کاستوم
+
+</button>
+
+</div>
+
+`;
+
+}).join("");
+
+renderOrganizer();
+
+}
+
+
+function openRegister(id){
+
+let match=
+matches.find(x=>x.id===id);
+
+if(!match)return;
+
+
+if(
+(match.players?.length||0)
+>=match.capacity
+){
+
+alert("ظرفیت مسابقه تکمیل شده است.");
+
+return;
+
+}
+
+
+document.getElementById(
+"registerMatch"
+).value=id;
+
+
+document.getElementById(
+"registerInfo"
+).innerHTML=
+
+`مسابقه:
+<b>${escapeHTML(match.title)}</b>
+<br>
+ظرفیت:
+${match.players.length}/${match.capacity}`;
+
+
+openM("register");
+
+}
+
+
+function registerPlayer(e){
+
+e.preventDefault();
+
+let id=
+Number(
+document.getElementById(
+"registerMatch"
+).value
+);
+
+let match=
+matches.find(x=>x.id===id);
+
+if(!match)return;
+
+
+let name=
+document.getElementById(
+"playerName"
+).value.trim();
+
+let playerId=
+document.getElementById(
+"playerId"
+).value.trim();
+
+
+if(
+match.players.some(
+p=>p.playerId===playerId
+)
+){
+
+alert(
+"این آیدی قبلاً ثبت شده است."
+);
+
+return;
+
+}
+
+
+match.players.push({
+
+name:name,
+
+playerId:playerId,
+
+date:
+new Date().toLocaleString("fa-IR")
+
+});
+
+
+save();
+
+document
+.querySelector("#register form")
+.reset();
+
+closeM("register");
+
+alert(
+"ثبت‌نام با موفقیت انجام شد ✅"
+);
+
+}
+
+
+function renderOrganizer(){
+
+let box=
+document.getElementById(
+"organizerList"
+);
+
+
+if(!matches.length){
+
+box.innerHTML=
+`
+<div class="empty">
+هنوز مسابقه‌ای ساخته نشده.
+</div>
+`;
+
+return;
+
+}
+
+
+box.innerHTML=
+matches.map(m=>`
+
+<div
+class="card"
+style="margin-bottom:12px">
+
+<h3>
+${escapeHTML(m.title)}
+</h3>
+
+<p class="muted">
+
+👥
+${m.players.length}/${m.capacity}
+
+•
+${escapeHTML(m.mode)}
+
+</p>
+
+<label>
+کد روم
+
+<input
+id="room-${m.id}"
+value="${escapeHTML(m.room)}"
+placeholder="کد روم">
+</label>
+
+<br>
+
+<button
+class="btn"
+onclick="updateRoom(${m.id})">
+
+ذخیره کد روم
+
+</button>
+
+<button
+class="btn dark"
+onclick="showPlayers(${m.id})">
+
+مشاهده بازیکنان
+
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+function updateRoom(id){
+
+let match=
+matches.find(x=>x.id===id);
+
+if(!match)return;
+
+match.room=
+document.getElementById(
+"room-"+id
+).value.trim();
+
+save();
+
+alert(
+"کد روم ذخیره شد ✅"
+);
+
+}
+
+
+function showPlayers(id){
+
+let match=
+matches.find(x=>x.id===id);
+
+if(!match)return;
+
+
+if(!match.players.length){
+
+alert(
+"هنوز بازیکنی ثبت‌نام نکرده."
+);
+
+return;
+
+}
+
+
+let text=
+match.players.map(
+(p,i)=>
+`${i+1}. ${p.name} — ${p.playerId}`
+).join("\n");
+
+
+alert(text);
+
+}
+
+
+document
+.querySelectorAll(".modal")
+.forEach(modal=>{
+
+modal.addEventListener(
+"click",
+function(e){
+
+if(e.target===modal){
+
+modal.classList.remove(
+"show"
+);
+
+}
+
+});
+
+});
+
+
+render();
+
+</script>
+
+</body>
+</html>
