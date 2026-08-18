@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>پنل مدیریت | FF ARENA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top, #3b0000 0%, #100000 35%, #050505 75%);
+      color: #fff;
+      font-family: Tahoma, Arial, sans-serif;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(950px, 94%);
+      margin: auto;
+      padding: 25px 0 60px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 18px;
+      margin-bottom: 25px;
+      background: rgba(20, 20, 20, .9);
+      border: 1px solid #3b2525;
+      border-radius: 18px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .logo span {
+      color: #ff2738;
+    }
+
+    .admin-title {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .panel {
+      background: rgba(17, 17, 17, .95);
+      border: 1px solid #3a2222;
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 15px 40px rgba(0,0,0,.35);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 25px;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #ff3848;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #3d3030;
+      background: #090909;
+      color: #fff;
+      border-radius: 11px;
+      padding: 13px;
+      outline: none;
+      font-family: inherit;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #ff2738;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 18px;
+      font-family: inherit;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-red {
+      background: linear-gradient(135deg, #ff182d, #a40012);
+      color: white;
+      width: 100%;
+      margin-top: 18px;
+    }
+
+    .btn-dark {
+      background: #242424;
+      color: #fff;
+    }
+
+    .btn-danger {
+      background: #5b0009;
+      color: #fff;
+    }
+
+    .tournament {
+      border: 1px solid #332222;
+      background: #0d0d0d;
+      border-radius: 15px;
+      padding: 17px;
+      margin-top: 14px;
+    }
+
+    .tournament-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tournament h3 {
+      margin: 0;
+      color: #fff;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #350006;
+      color: #ff5260;
+      border: 1px solid #6d0a13;
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin: 15px 0;
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+    }
+
+    .message {
+      margin-top: 15px;
+      text-align: center;
+      color: #ff5968;
+    }
+
+    @media (max-width: 650px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .info {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header class="header">
+
+    <div class="logo">
+      FF <span>ARENA</span>
+    </div>
+
+    <div class="admin-title">
+      پنل مدیریت مسابقات
+    </div>
+
+  </header>
+
+
+  <!-- ساخت مسابقه -->
+
+  <section class="panel">
+
+    <h1>
+      ساخت مسابقه جدید
+    </h1>
+
+    <div class="grid">
+
+      <div class="field full">
+
+        <label>
+          نام مسابقه
+        </label>
+
+        <input
+          id="title"
+          type="text"
+          placeholder="مثلاً کاستوم شبانه"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          نوع مسابقه
+        </label>
+
+        <select id="mode">
+
+          <option value="Solo">
+            تک نفره
+          </option>
+
+          <option value="Duo">
+            دو نفره
+          </option>
+
+          <option value="Squad">
+            اسکواد ۴ نفره
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          ظرفیت کل بازیکنان
+        </label>
+
+        <input
+          id="capacity"
+          type="number"
+          min="1"
+          placeholder="مثلاً 48"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          هزینه ورود هر نفر (تومان)
+        </label>
+
+        <input
+          id="entry"
+          type="number"
+          min="0"
+          placeholder="مثلاً 50000"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          جایزه
+        </label>
+
+        <input
+          id="prize"
+          type="text"
+          placeholder="مثلاً 2,000,000 تومان"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          تاریخ مسابقه
+        </label>
+
+        <input
+          id="date"
+          type="text"
+          placeholder="مثلاً امشب"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          ساعت مسابقه
+        </label>
+
+        <input
+          id="time"
+          type="time"
+        >
+
+      </div>
+
+
+      <div class="field full">
+
+        <label>
+          قوانین مسابقه
+        </label>
+
+        <textarea
+          id="rules"
+          placeholder="قوانین این کاستوم را بنویسید..."
+        ></textarea>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="btn btn-red"
+      onclick="addTournament()"
+    >
+      + اضافه کردن مسابقه
+    </button>
+
+
+    <div
+      id="message"
+      class="message"
+    ></div>
+
+  </section>
+
+
+  <!-- لیست مسابقات -->
+
+  <section class="panel">
+
+    <h2>
+      مسابقات ساخته شده
+    </h2>
+
+    <div id="tournamentList"></div>
+
+  </section>
+
+
+  <!-- ثبت نام ها -->
+
+  <section class="panel">
+
+    <h2>
+      ثبت‌نام بازیکنان
+    </h2>
+
+    <div id="registrationList"></div>
+
+  </section>
+
+</div>
+
+
+<script>
+
+const TOURNAMENT_KEY = "ffArenaTournaments";
+const REGISTRATION_KEY = "ffArenaRegistrations";
+
+
+function getTournaments() {
+
+  return JSON.parse(
+    localStorage.getItem(TOURNAMENT_KEY) || "[]"
+  );
+
+}
+
+
+function saveTournaments(data) {
+
+  localStorage.setItem(
+    TOURNAMENT_KEY,
+    JSON.stringify(data)
+  );
+
+}
+
+
+function addTournament() {
+
+  const title =
+    document.getElementById("title").value.trim();
+
+  const mode =
+    document.getElementById("mode").value;
+
+  const capacity =
+    Number(document.getElementById("capacity").value);
+
+  const entry =
+    Number(document.getElementById("entry").value);
+
+  const prize =
+    document.getElementById("prize").value.trim();
+
+  const date =
+    document.getElementById("date").value.trim();
+
+  const time =
+    document.getElementById("time").value;
+
+  const rules =
+    document.getElementById("rules").value.trim();
+
+
+  if (!title) {
+
+    showMessage("نام مسابقه را وارد کنید.");
+    return;
+
+  }
+
+
+  if (!capacity || capacity < 1) {
+
+    showMessage("ظرفیت مسابقه را وارد کنید.");
+    return;
+
+  }
+
+
+  if (entry < 0 || Number.isNaN(entry)) {
+
+    showMessage("هزینه ورود صحیح نیست.");
+    return;
+
+  }
+
+
+  if (!prize) {
+
+    showMessage("جایزه را وارد کنید.");
+    return;
+
+  }
+
+
+  const tournaments = getTournaments();
+
+
+  const tournament = {
+
+    id: Date.now(),
+
+    title,
+
+    mode,
+
+    capacity,
+
+    entry,
+
+    prize,
+
+    date,
+
+    time,
+
+    rules,
+
+    image: "",
+
+    createdAt:
+      new Date().toISOString()
+
+  };
+
+
+  tournaments.push(tournament);
+
+  saveTournaments(tournaments);
+
+
+  clearForm();
+
+  renderTournaments();
+
+  showMessage("مسابقه با موفقیت ساخته شد ✅");
+
+}
+
+
+function deleteTournament(id) {
+
+  const ok =
+    confirm("آیا از حذف این مسابقه مطمئن هستید؟");
+
+
+  if (!ok) return;
+
+
+  const tournaments =
+    getTournaments().filter(
+      item => item.id !== id
+    );
+
+
+  saveTournaments(tournaments);
+
+  renderTournaments();
+
+}
+
+
+function renderTournaments() {
+
+  const container =
+    document.getElementById("tournamentList");
+
+  const tournaments =
+    getTournaments();
+
+
+  if (tournaments.length === 0) {
+
+    container.innerHTML = `
+      <div class="empty">
+        هنوز مسابقه‌ای ساخته نشده است.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    tournaments.map(t => `
+
+      <div class="tournament">
+
+        <div class="tournament-top">
+
+          <h3>
+            ${escapeHTML(t.title)}
+          </h3>
+
+          <span class="badge">
+            ${modeName(t.mode)}
+          </span>
+
+        </div>
+
+
+        <div class="info">
+
+          <div>
+            👥 ظرفیت:
+            ${t.capacity} نفر
+          </div>
+
+          <div>
+            💰 ورودی:
+            ${Number(t.entry).toLocaleString()}
+            تومان
+          </div>
+
+          <div>
+            🏆 جایزه:
+            ${escapeHTML(t.prize)}
+          </div>
+
+          <div>
+            🕐 ساعت:
+            ${escapeHTML(t.time || "-")}
+          </div>
+
+          <div>
+            📅 تاریخ:
+            ${escapeHTML(t.date || "-")}
+          </div>
+
+        </div>
+
+
+        <div class="actions">
+
+          <button
+            class="btn btn-danger"
+            onclick="deleteTournament(${t.id})"
+          >
+            حذف مسابقه
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function renderRegistrations() {
+
+  const container =
+    document.getElementById("registrationList");
+
+
+  const registrations =
+    JSON.parse(
+      localStorage.getItem(REGISTRATION_KEY) || "[]"
+    );
+
+
+  if (registrations.length === 0) {
+
+    container.innerHTML = `
+      <div class="empty">
+        هنوز بازیکنی ثبت‌نام نکرده است.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    registrations.map((r, index) => `
+
+      <div class="tournament">
+
+        <div class="tournament-top">
+
+          <h3>
+            ${escapeHTML(r.playerName)}
+          </h3>
+
+          <span class="badge">
+            ${escapeHTML(r.tournamentTitle)}
+          </span>
+
+        </div>
+
+
+        <div class="info">
+
+          <div>
+            📱 شماره:
+            ${escapeHTML(r.phone)}
+          </div>
+
+          <div>
+            🎮 مسابقه:
+            ${escapeHTML(r.tournamentTitle)}
+          </div>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function clearForm() {
+
+  document.getElementById("title").value = "";
+
+  document.getElementById("capacity").value = "";
+
+  document.getElementById("entry").value = "";
+
+  document.getElementById("prize").value = "";
+
+  document.getElementById("date").value = "";
+
+  document.getElementById("time").value = "";
+
+  document.getElementById("rules").value = "";
+
+}
+
+
+function showMessage(text) {
+
+  const message =
+    document.getElementById("message");
+
+  message.textContent = text;
+
+  setTimeout(() => {
+
+    message.textContent = "";
+
+  }, 3000);
+
+}
+
+
+function modeName(mode) {
+
+  if (mode === "Solo")
+    return "تک نفره";
+
+  if (mode === "Duo")
+    return "دو نفره";
+
+  if (mode === "Squad")
+    return "اسکواد ۴ نفره";
+
+  return mode;
+
+}
+
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+renderTournaments();
+renderRegistrations();
+
+</script>
+
+</body>
+  </html>
