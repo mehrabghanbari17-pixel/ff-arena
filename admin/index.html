@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مدیریت FF ARENA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background: #07090f;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .top {
+      background: #0d1018;
+      border-bottom: 1px solid #252a35;
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #ff2638;
+    }
+
+    .back {
+      color: #fff;
+      text-decoration: none;
+      background: #171b25;
+      border: 1px solid #303746;
+      padding: 9px 14px;
+      border-radius: 10px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 900px;
+      margin: 30px auto;
+    }
+
+    .title {
+      margin-bottom: 25px;
+    }
+
+    .title h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .title p {
+      color: #999;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: #11151e;
+      border: 1px solid #292f3b;
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card .number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ff2638;
+    }
+
+    .panel {
+      background: #11151e;
+      border: 1px solid #292f3b;
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .panel h2 {
+      margin-bottom: 18px;
+      font-size: 21px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #bbb;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      background: #080b11;
+      color: #fff;
+      border: 1px solid #303746;
+      border-radius: 10px;
+      padding: 13px;
+      margin-bottom: 15px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #ff2638;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 20px;
+      font-size: 15px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .red {
+      background: #e5091c;
+      color: #fff;
+    }
+
+    .dark {
+      background: #252b36;
+      color: #fff;
+    }
+
+    .room {
+      border: 1px solid #292f3b;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 12px;
+      background: #0b0e14;
+    }
+
+    .room strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 17px;
+    }
+
+    .room small {
+      color: #999;
+    }
+
+    .footer {
+      text-align: center;
+      color: #666;
+      padding: 30px 0;
+    }
+
+    @media (max-width: 600px) {
+      .cards,
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      .title h1 {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="top">
+    <div class="logo">
+      FF <span>ARENA</span>
+    </div>
+
+    <a class="back" href="../index.html">
+      ← سایت اصلی
+    </a>
+  </header>
+
+  <main class="container">
+
+    <section class="title">
+      <h1>پنل مدیریت</h1>
+      <p>مدیریت مسابقات و کاستوم‌های FF ARENA</p>
+    </section>
+
+    <section class="cards">
+
+      <div class="card">
+        <h3>مسابقات فعال</h3>
+        <div class="number">0</div>
+      </div>
+
+      <div class="card">
+        <h3>بازیکنان ثبت‌نام‌شده</h3>
+        <div class="number">0</div>
+      </div>
+
+    </section>
+
+    <section class="panel">
+
+      <h2>➕ ساخت کاستوم جدید</h2>
+
+      <label>نام مسابقه</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="مثلاً کاستوم شبانه"
+      >
+
+      <div class="row">
+
+        <div>
+          <label>نوع بازی</label>
+
+          <select id="type">
+            <option value="solo">تک نفره</option>
+            <option value="duo">دو نفره</option>
+            <option value="squad">چهار نفره (اسکواد)</option>
+          </select>
+        </div>
+
+        <div>
+          <label>هزینه ورود</label>
+
+          <input
+            type="number"
+            id="price"
+            placeholder="مثلاً 50000"
+          >
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div>
+          <label>جایزه نفر اول</label>
+
+          <input
+            type="text"
+            id="first"
+            placeholder="مثلاً 500,000 تومان"
+          >
+        </div>
+
+        <div>
+          <label>جایزه نفر دوم</label>
+
+          <input
+            type="text"
+            id="second"
+            placeholder="مثلاً 300,000 تومان"
+          >
+        </div>
+
+      </div>
+
+      <label>جایزه نفر سوم</label>
+
+      <input
+        type="text"
+        id="third"
+        placeholder="مثلاً 200,000 تومان"
+      >
+
+      <button class="red" onclick="createRoom()">
+        ساخت مسابقه
+      </button>
+
+    </section>
+
+    <section class="panel">
+
+      <h2>🎮 مسابقات ساخته‌شده</h2>
+
+      <div id="rooms">
+
+        <p style="color:#777;">
+          هنوز مسابقه‌ای ساخته نشده است.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    FF ARENA © فقط مسابقات Free Fire
+  </footer>
+
+  <script>
+
+    function createRoom() {
+
+      const name = document.getElementById("name").value;
+      const type = document.getElementById("type").value;
+      const price = document.getElementById("price").value;
+      const first = document.getElementById("first").value;
+      const second = document.getElementById("second").value;
+      const third = document.getElementById("third").value;
+
+      if (!name || !price) {
+        alert("نام مسابقه و هزینه ورود را وارد کن.");
+        return;
+      }
+
+      let typeText = "تک نفره";
+
+      if (type === "duo") {
+        typeText = "دو نفره";
+      }
+
+      if (type === "squad") {
+        typeText = "چهار نفره (اسکواد)";
+      }
+
+      const rooms = document.getElementById("rooms");
+
+      rooms.innerHTML = `
+        <div class="room">
+
+          <strong>${name}</strong>
+
+          <small>
+            نوع: ${typeText}
+            <br>
+            هزینه ورود: ${price} تومان
+            <br>
+            🥇 ${first || "تعیین نشده"}
+            <br>
+            🥈 ${second || "تعیین نشده"}
+            <br>
+            🥉 ${third || "تعیین نشده"}
+          </small>
+
+        </div>
+      `;
+
+      alert("مسابقه ساخته شد.");
+
+    }
+
+  </script>
+
+</body>
+  </html>
