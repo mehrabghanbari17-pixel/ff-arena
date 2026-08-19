@@ -159,4 +159,70 @@ textarea {
   border: 1px solid #303746;
   border-radius: 10px;
   padding: 12px;
- 
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #ff3030;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  color: #d9dde5;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #0e1119;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 13px;
+  border-bottom: 1px solid #252b38;
+  text-align: right;
+}
+
+th {
+  background: #151923;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 25px 0;
+  text-align: center;
+  color: #858c99;
+  border-top: 1px solid #252a35;
+}
+
+@media (max-width: 600px) {
+  .header-content {
+    flex-direction: column;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  .hero h1 {
+    font-size: 25px;
+  }
+
+  main {
+    padding: 20px 0;
+  }
+
+  .container {
+    width: 94%;
+  }
+}
